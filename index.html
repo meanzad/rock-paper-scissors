@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <script>
+
         function getComputerChoice()
         {
             let x = Math.random();
@@ -13,6 +14,68 @@
                 return "paper";
         }
 
-        console.log(getComputerChoice());
+        function getHumanChoice()
+        {
+            let x;
+            do{
+                x = prompt("Choose rock, paper or scissor");
+                x = x.toLowerCase();
+            }
+            while(x != "rock" && x != "scissor" && x != "paper")
+            return x;
+        }
+
+        
+
+        
+
+        function playGame()
+        {
+
+            let humanScore = 0;
+            let computerScore = 0;
+
+            function playRound(humanChoice,computerChoice)
+            {
+                if (humanChoice === computerChoice){
+                    console.log("Draw!");
+                }
+                else if (humanChoice === "rock" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "scissor" || humanChoice === "scissor" && computerChoice === "rock")
+                {
+                    computerScore += 1;
+                    console.log("You lose! " + computerChoice + " beats " + humanChoice);
+                    
+                }
+                else{
+                    humanScore  += 1;
+                    console.log("You win! " + humanChoice + " beats " + computerChoice);
+                }
+
+            }
+
+            for(let i = 0; i < 5; i++){
+
+                const humanChoice = getHumanChoice();
+                const computerChoice = getComputerChoice();
+
+                playRound(humanChoice,computerChoice);
+                console.log(computerChoice);
+                console.log(humanChoice);
+                console.log(humanScore);
+                console.log(computerScore);
+
+            }
+
+            console.log("GAME OVER");
+            if (humanScore > computerScore)
+                console.log("Congratulations, You Won!");
+            else if (humanScore < computerScore)
+                console.log("Oh No! You lost!")
+            else
+                console.log("It's a Draw!");
+            
+        }
+
+        playGame();
     </script>
 </html>
